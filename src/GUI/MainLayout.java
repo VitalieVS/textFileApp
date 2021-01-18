@@ -26,6 +26,12 @@ public class MainLayout extends JFrame implements ListInterface {
         JPanel panel = new JPanel();
         panel.setBounds(0, 0, 100, 200);
         panel.setBackground(Color.gray);
+        panel.add(createReadButton());
+        panel.add(createShowButton());
+        this.add(panel);
+    }
+
+    public JButton createReadButton() {
         JButton readFileButton = new JButton("Read From File");
         readFileButton.setBounds(0, 0, 80, 30);
         readFileButton.addActionListener(e -> {
@@ -35,8 +41,16 @@ public class MainLayout extends JFrame implements ListInterface {
                 showList();
             }
         });
-        panel.add(readFileButton);
-        this.add(panel);
+        return readFileButton;
+    }
+
+    public JButton createShowButton() {
+        JButton showButton = new JButton("Show Data");
+        showButton.setBounds(40, 40, 80, 30);
+        showButton.addActionListener(e -> {
+            showList();
+        });
+        return showButton;
     }
 
     public void showList() {
