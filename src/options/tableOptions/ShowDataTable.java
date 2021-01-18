@@ -3,6 +3,8 @@ package options.tableOptions;
 import models.ListInterface;
 
 import javax.swing.*;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
@@ -34,6 +36,12 @@ public class ShowDataTable implements ListInterface {
 
         table.setSelectionModel(new ForcedListSelectionModel());
         table.getTableHeader().setReorderingAllowed(false);
+        table.getModel().addTableModelListener(e -> {
+            System.out.println(e.getColumn());
+            System.out.println(e.getFirstRow());
+            System.out.println(table.getValueAt(e.getColumn(), e.getFirstRow()));
+            System.out.println("Changed!");
+        });
         panel.add(table);
         frame.add(createRefreshButton());
         frame.add(panel);
