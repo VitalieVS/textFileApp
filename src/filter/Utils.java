@@ -4,13 +4,8 @@ import java.io.File;
 
 public class Utils {
 
-    public final static String xls = "xls";
-    public final static String xlsx = "xlsx";
     public final static String txt = "txt";
 
-    /*
-     * Get the extension of a file.
-     */
     public static String getExtension(File f) {
         String ext = null;
         String s = f.getName();
