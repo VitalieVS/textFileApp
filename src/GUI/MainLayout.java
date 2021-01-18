@@ -7,8 +7,10 @@ public class MainLayout extends JFrame {
     public MainLayout() {
         this.setTitle("TextApplication");
         this.setAlwaysOnTop(true);
-        this.setPreferredSize(new Dimension(100, 200));
+        this.setSize(200,200);
+        this.setResizable(false);
         this.setVisible(true);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         initializeComponents();
     }
 
