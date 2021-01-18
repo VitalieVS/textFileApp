@@ -4,6 +4,7 @@ import filter.TXTFilter;
 import filter.Utils;
 import models.ListInterface;
 import options.TXTFileReader;
+import options.tableOptions.ShowDataTable;
 
 import javax.swing.*;
 import java.awt.*;
@@ -48,7 +49,10 @@ public class MainLayout extends JFrame implements ListInterface {
         JButton showButton = new JButton("Show Data");
         showButton.setBounds(40, 40, 80, 30);
         showButton.addActionListener(e -> {
-            showList();
+            if (Utils.getExtension(file).equals(Utils.txt)) {
+                ShowDataTable tableData = new ShowDataTable();
+                tableData.insertRows();
+        }
         });
         return showButton;
     }
