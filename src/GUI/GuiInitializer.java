@@ -1,8 +1,6 @@
-package mainApplication;
+package GUI;
 
-import GUI.MainLayout;
-
-public class MainInitializer {
+public class GuiInitializer {
     public static void main(String[] args) {
         new MainLayout();
     }

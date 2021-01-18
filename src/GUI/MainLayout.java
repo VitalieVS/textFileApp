@@ -1,13 +1,15 @@
 package GUI;
 
+import filter.TXTFilter;
+import filter.Utils;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 
 public class MainLayout extends JFrame {
     private File file;
+
     public MainLayout() {
         this.setTitle("TextApplication");
         this.setAlwaysOnTop(true);
@@ -24,10 +26,9 @@ public class MainLayout extends JFrame {
         panel.setBackground(Color.gray);
         JButton readFileButton = new JButton("Read From File");
         readFileButton.setBounds(0, 0, 80, 30);
-        readFileButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
+        readFileButton.addActionListener(e -> {
+            if (createFileChooser() && Utils.getExtension(file).equals(Utils.txt)) {
+                System.out.println("Work");
             }
         });
         panel.add(readFileButton);
@@ -39,13 +40,12 @@ public class MainLayout extends JFrame {
         fileChooser.setAcceptAllFileFilterUsed(false);
         fileChooser.addChoosableFileFilter(new TXTFilter());
         fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-        int result = fileChooser.showDialog(null);
+        int result = fileChooser.showOpenDialog(null);
         if (result == JFileChooser.APPROVE_OPTION) {
             file = fileChooser.getSelectedFile();
             return true;
         } else {
             return false;
         }
-
     }
 }
