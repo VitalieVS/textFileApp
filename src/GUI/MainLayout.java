@@ -2,12 +2,14 @@ package GUI;
 
 import filter.TXTFilter;
 import filter.Utils;
+import models.ListInterface;
+import options.TXTFileReader;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 
-public class MainLayout extends JFrame {
+public class MainLayout extends JFrame implements ListInterface {
     private File file;
 
     public MainLayout() {
@@ -28,11 +30,22 @@ public class MainLayout extends JFrame {
         readFileButton.setBounds(0, 0, 80, 30);
         readFileButton.addActionListener(e -> {
             if (createFileChooser() && Utils.getExtension(file).equals(Utils.txt)) {
-                System.out.println("Work");
+                TXTFileReader reader = new TXTFileReader(file);
+                reader.readFile();
+                showList();
             }
         });
         panel.add(readFileButton);
         this.add(panel);
+    }
+
+    public void showList() {
+        for (models.TXTFileModel txtFileModel : textFileList) {
+            System.out.println(txtFileModel.getId());
+            System.out.println(txtFileModel.getPrenume());
+            System.out.println(txtFileModel.getNume());
+            System.out.println(txtFileModel.getBursa());
+        }
     }
 
     public boolean createFileChooser() {
