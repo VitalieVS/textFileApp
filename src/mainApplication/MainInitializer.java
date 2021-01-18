@@ -1,4 +1,4 @@
-package MainApplication;
+package mainApplication;
 
 import GUI.MainLayout;
 
