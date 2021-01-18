@@ -39,7 +39,6 @@ public class MainLayout extends JFrame implements ListInterface {
             if (createFileChooser() && Utils.getExtension(file).equals(Utils.txt)) {
                 TXTFileReader reader = new TXTFileReader(file);
                 reader.readFile();
-                showList();
             }
         });
         return readFileButton;
@@ -57,20 +56,11 @@ public class MainLayout extends JFrame implements ListInterface {
         return showButton;
     }
 
-    public void showList() {
-        for (models.TXTFileModel txtFileModel : textFileList) {
-            System.out.println(txtFileModel.getId());
-            System.out.println(txtFileModel.getPrenume());
-            System.out.println(txtFileModel.getNume());
-            System.out.println(txtFileModel.getBursa());
-        }
-    }
-
     public boolean createFileChooser() {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setAcceptAllFileFilterUsed(false);
         fileChooser.addChoosableFileFilter(new TXTFilter());
-        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
         int result = fileChooser.showOpenDialog(null);
         if (result == JFileChooser.APPROVE_OPTION) {
             file = fileChooser.getSelectedFile();
